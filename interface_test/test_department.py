@@ -50,9 +50,9 @@ class TestDepartment:
         # 断言响应
         assert res.json()["errcode"] == 0
 
-    @pytest.mark.parametrize("name,name_en,parentid,order,id,expect",
+    @pytest.mark.parametrize("name,name_en,parentid,order,_id,expect",
                              [("技术部1t6yuaambg54321", "JISHUxxx", 1, 1, 566, 0)])
-    def test_create_department_with_param(self, name, name_en, parentid, order, id, expect):
+    def test_create_department_with_param(self, name, name_en, parentid, order, _id, expect):
         # 定义url：
         url = "https://qyapi.weixin.qq.com/cgi-bin/department/create"
 
@@ -68,7 +68,7 @@ class TestDepartment:
             "name_en": name_en,
             "parentid": parentid,
             "order": order,
-            "id": id
+            "id": _id
         }
 
         # 发起请求
@@ -90,7 +90,7 @@ class TestDepartment:
 
         # 发起删除动作
 
-        res = requests.delete(url=url, params=param)
+        res = requests.get(url=url, params=param)
 
         # 断言删除动作是否成功
 
